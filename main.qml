@@ -26,6 +26,7 @@ Window {
                     color: "lightgray"
 
                     property bool isAlive: false
+                    property bool nextGen: false
                     property var neighbors: []
 
                     function aliveNeighbors() {
@@ -60,6 +61,11 @@ Window {
             }
         }
 
-        Component.onCompleted: gols = new Logic.Game(field);
+        Timer {
+            interval: 100
+            running: true
+            repeat: true
+            onTriggered: Logic.nextGeneration(field);
+        }
     }
 }
