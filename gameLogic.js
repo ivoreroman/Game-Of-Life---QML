@@ -36,14 +36,24 @@ function aliveNeighbors(r, c, field) {
 
     for (var i = r - 1; i <= r + 1; i++) {
         for (var j = c - 1; j <= c + 1; j++) {
-            if (i == r && j == c)
+            if ((i == r && j == c) || !isNeighborInLimits(field, i, j) )
                 continue;
             var cell = getChild(field, i, j);
             if (cell != null && cell.isAlive)
                 neighbors++;
         }
     }
+
     return neighbors;
+}
+
+
+function isNeighborInLimits(field,neighborRow, neighborColumn) {
+    if (neighborColumn < 0 || neighborColumn == field.columns ||
+            neighborRow < 0 || neighborRow == field.rows)
+        return false;
+    else
+        return true;
 }
 
 function willLive(livingNeighbors, isAlive) {
