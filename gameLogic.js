@@ -49,8 +49,8 @@ function aliveNeighbors(r, c, field) {
 
 
 function isNeighborInLimits(field,neighborRow, neighborColumn) {
-    if (neighborColumn < 0 || neighborColumn == field.columns ||
-            neighborRow < 0 || neighborRow == field.rows)
+    if (neighborColumn < 0 || neighborColumn >= field.columns ||
+            neighborRow < 0 || neighborRow >= field.rows)
         return false;
     else
         return true;
