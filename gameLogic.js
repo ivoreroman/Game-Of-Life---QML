@@ -1,23 +1,25 @@
 function nextGeneration(field) {
+    assignNextGenValues(field);
+    drawNextGen(field);
+}
 
+function assignNextGenValues(field) {
     for (var i = 0; i < field.rows; i++) {
         for (var j = 0; j < field.columns; j++) {
-            var it = i * field.rows + j;
-            var cell = field.children[it];
+            var cell = getChild(field, i, j);
             var neighbors = aliveNeighbors(i, j, field);
 
             cell.nextGen = willLive(neighbors, cell.isAlive);
         }
     }
+}
 
+function drawNextGen(field) {
     for (var i = 0; i < field.rows; i++) {
         for (var j = 0; j < field.columns; j++) {
-            var it = i * field.rows + j;
-            var cell = field.children[it];
-
+            var cell = getChild(field, i, j);
             cell.isAlive = cell.nextGen;
             changeColor(cell);
-
         }
     }
 }

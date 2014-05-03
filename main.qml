@@ -27,14 +27,6 @@ Window {
 
                     property bool isAlive: false
                     property bool nextGen: false
-                    property var neighbors: []
-
-                    function aliveNeighbors() {
-                        return neighbors.filter(function(nb) {
-                            return nb.isAlive
-                        })
-                    }
-
 
 
                     MouseArea {
@@ -52,9 +44,6 @@ Window {
                                 isAlive = !isAlive
                                 changeColor()
                             }
-                        }
-                        onClicked: {
-                            changeColor()
                         }
                     }
                 }
